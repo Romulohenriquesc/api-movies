@@ -77,9 +77,7 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<UserDtoOut> create(@RequestBody UserCreateDtoIn user) {
-		System.out.println("antes");
 		UserDtoOut userOut = new UserDtoOut(userCreateService.create(user.toUser()));
-		System.out.println("depois");
 		return ResponseEntity.ok(userOut);
 	}
 	

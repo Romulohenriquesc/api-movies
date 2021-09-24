@@ -14,6 +14,6 @@ public class ActorListService {
 	private IActorRepository actorRepository;
 	
 	public List<Actor> list(){
-		return actorRepository.find(); 
+		return actorRepository.findAll(); 
 	}
 }

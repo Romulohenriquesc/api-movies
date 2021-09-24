@@ -1,13 +1,10 @@
 package movies.api.repository.actor;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import movies.api.domain.model.Actor;
+import movies.api.domain.model.Evaluation;
 
-public interface IActorRepository {
-
-	List<Actor> find();
-	Actor getById(Long id);
-	Actor save(Actor actor);
-	void remove(Long id);
+public interface IActorRepository extends JpaRepository<Actor, Long>, JpaSpecificationExecutor<Evaluation>{
 }

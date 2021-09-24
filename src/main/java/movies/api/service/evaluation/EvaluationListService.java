@@ -14,7 +14,6 @@ public class EvaluationListService {
 	private IEvaluationRepository evaluationRepository;
 	
 	public List<Evaluation> getById(Long id){
-		System.out.println(evaluationRepository.findEvaluationAvg(id));
 		return evaluationRepository.findByMovieId(id); 
 	}
 }

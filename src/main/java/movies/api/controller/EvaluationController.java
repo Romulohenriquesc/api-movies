@@ -29,7 +29,6 @@ public class EvaluationController {
 	
 	@PostMapping
 	public ResponseEntity<EvaluationDtoOut> create(@RequestBody EvaluationCreateDtoIn evaluation) {
-		System.out.println("aqui primeiro");
 		EvaluationDtoOut evaluationOut = new EvaluationDtoOut(
 					evaluationCreateService.create(evaluation.toEvaluation())
 				);

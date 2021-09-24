@@ -1,63 +1,162 @@
-# Desafio Pessoa Desenvolvedora Java
+# Movies API Rest
 
-## 🏗 O que fazer?
+# 🖥 what was developed?
 
-- Você deve realizar um *fork* deste repositório e, ao finalizar, enviar o link do seu repositório para a nossa equipe. Lembre-se, **NÃO** é necessário criar um *Pull Request* para isso, nós iremos avaliar e retornar por e-mail o resultado do teste
+An API was created that the [IMDb](https://www.imdb.com/) site that consults its content, these are the features developed:
 
-# 🚨 Requisitos
+- User(administrator)
+    - Registration
+    - Editing
+    - Logical Exclusion (deactivation)
+    - Listing of active non-admin users
+        - Option to bring paged records
+        - Return users alphabetically
+- User(non-admin)
+    - Registration
+    - Editing
+    - Logical Exclusion (deactivation)
+- Movies
+    - Registration
+    - Evaluation - partial: because I haven't authenticated, I'm sending the user through the body
+    - Listing
+        - Option of filters by director, name, genre and/or actors
+        - Option to get paged records
+    - Movie Details by getting all the information about the movie, including average votes
 
-- A API deve ser construída em Java (8 ou superior) utilizando Spring Framework (2.2 ou superior)
-- Implementar autenticação seguindo o padrão ***JWT***, lembrando que o token a ser recebido deve estar no formado ***Bearer***
-- Implementar operações no banco de dados utilizando ***Spring Data JPA*** & ***Hibernate***
-- **Bancos relacionais permitidos**
-    - *MySQL* (prioritariamente)
-    - *PostgreSQL*
-- As entidades deversão ser criadas como tabelas utilizando a ferramenta de migração **Flyway**. Portanto, os scripts de **migrations** para geração das tabelas devem ser enviados no teste
-- Sua API deverá seguir os padrões REST na construção das rotas e retornos
-- Sua API deverá conter documentação viva utilizando a *OpenAPI Specification* (**Swagger**)
-- Caso haja alguma particularidade de implementação, instruções para execução do projeto deverão ser enviadas
+**Obs.:** 
+**Because it is not authenticated, the api allows any route to be accessed** 
 
-# 🎁 Extra
+🖥 Endpoints
+base_url : localhost:8080
 
-- Testes unitários
-- Teste de integração da API em linguagem de sua preferência (damos importância para pirâmide de testes)
-- Cobertura de testes utilizando Sonarqube
-- Utilização de *Docker* (enviar todos os arquivos e instruções necessárias para execução do projeto)
-
-# 🕵🏻‍♂️ Itens a serem avaliados
-
-- Estrutura do projeto
-- Utilização de código limpo e princípios **SOLID**
-- Segurança da API, como autenticação, senhas salvas no banco, *SQL Injection* e outros
-- Boas práticas da Linguagem/Framework
-- Seu projeto deverá seguir tudo o que foi exigido na seção  [O que desenvolver?](##--o-que-desenvolver)
-
-# 🖥 O que desenvolver?
-
-Você deverá criar uma API que o site [IMDb](https://www.imdb.com/) irá consultar para exibir seu conteúdo, sua API deverá conter as seguintes funcionalidades:
-
-- Administrador
-    - Cadastro
-    - Edição
-    - Exclusão lógica (desativação)
-    - Listagem de usuários não administradores ativos
-        - Opção de trazer registros paginados
-        - Retornar usuários por ordem alfabética
-- Usuário
-    - Cadastro
-    - Edição
-    - Exclusão lógica (desativação)
-- Filmes
-    - Cadastro (somente um usuário administrador poderá realizar esse cadastro)
-    - Voto (a contagem de votos será feita por usuário de 0-4 que indica quanto o usuário gostou do filme)
-    - Listagem
-        - Opção de filtros por diretor, nome, gênero e/ou atores
-        - Opção de trazer registros paginados
-        - Retornar a lista ordenada por filmes mais votados e por ordem alfabética
-    - Detalhes do filme trazendo todas as informações sobre o filme, inclusive a média dos votos
+Actors
+- Return all actors
+- [GET]     base_url/actors
+- Return an actor
+- [GET]     base_url/actors/{id}
+- Add an actor
+- [POST]    base_url/actors
+```json
+{
+    "name": "Leonardo DiCaprio"
+}
+```
+Movies
+- Return all movies
+- [GET]     base_url/movies
+- Return a movie
+- [GET]     base_url/movies/{id}
+- Return all movies sorted by best rating
+- [GET]     base_url/movies/rate
+- Return the movies with the name, actors, genre and director filters
+- [GET]     base_url/movies/search?search=example
+- Add a movie
+- [POST]    base_url/movies
+- [BODY]
+```json
+{
+    "name": "A Origem 3",
+    "genre": "Ação",
+    "director": "Christopher Nolan",
+    "description": "Dom Cobb é um ladrão com a rara habilidade de roubar segredos do inconsciente, obtidos durante o estado de sono.",
+    "actors": [
+      {
+        "id": 2,
+        "name": "Leonardo DiCaprio"
+      }
+    ]
+}
+```
+- Update a movie
+- [PUT]     base_url/movies/{id}
+- [BODY]
+```json
+{
+    "name": "A Origem 2",
+    "genre": "Ação",
+    "director": "Christopher Nolan",
+    "description": "Dom Cobb é um ladrão com a rara habilidade de roubar segredos do inconsciente, obtidos durante o estado de sono.",
+    "actors": [
+      {
+        "id": 2,
+        "name": "Outro Leonardo DiCaprio"
+      }
+    ]
+}
+```
+- [DELETE]  base_url/movies/{id}
+Users
+- Return all users: Pagination and is optional (take, page) and orderName=asc for alphabetical order
+- [GET]     base_url/users?orderName=asc&take=10&page=0
+- Return an user
+- [GET]     base_url/users/{id}
+- Add a user
+- [POST]    base_url/users
+- [BODY]
+```json
+{
+	"name": "Romulo",
+	"email": "romulo@gmail.com",
+	"password": "romulo123",
+	"admin": false
+}	
+```
+- Update a user
+- [PUT]     base_url/users/{id}
+- [BODY]
+```json
+{
+	"name": "Romulo 2",
+	"email": "romulo@gmail.com",
+	"password": "romulo123",
+	"admin": true
+}	
+```
+- Delete a user (disable)
+- [DELETE]  base_url/users/{id}
+Evaluation
+- Add an evaluation
+- [POST]    base_url/evaluations
+- [BODY]
+```json
+{
+	"movie": {
+    "id": 1,
+    "name": "A Origem 1",
+    "genre": "Ação",
+    "director": "Christopher Nolan",
+    "description": "Dom Cobb é um ladrão com a rara habilidade de roubar segredos do inconsciente, obtidos durante o estado de sono.",
+    "actors": [
+      {
+        "id": 2,
+        "name": "Leonardo DiCaprio"
+      }
+    ],
+    "evaluation": null
+  },
+	"user": {
+    "id": 1,
+    "name": "Romulo",
+    "email": "romulocavalcante@gmail.com",
+    "admin": false,
+    "enabled": true
+  },
+	"grade": 4
+}	
+```
+- Return all evaluations of a movie (id from movie)
+- [GET]     base_url/evaluations/{id}
 
 **Obs.:** 
 
-**Apenas os usuários poderão votar nos filmes e a API deverá validar quem é o usuário que está acessando, ou seja, se é um usuário administrador ou não.**
+**because of time, it was not possible to implement some features or were commented:**
+**Java 8 or higher: OK**
+**Rest Pattern: OK**
+**MySQL: OK**
+**JWT: No**
+**Swagger: No**
+**Spring Data JPA & Hibernate: OK**
+**Flyway: No - You won't be able to run migrations but when running the API, JPA will create the database structure and populate it with information for testing**
 
-**Caso não consiga concluir todos os itens propostos, é importante que nos envie a implementação até onde foi possível para que possamos avaliar**
+**Obs.:** 
+**You need to define in the application.properties file the url, username and password of your MySQL database**
