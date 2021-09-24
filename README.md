@@ -30,7 +30,7 @@ An API was created that the [IMDb](https://www.imdb.com/) site that consults its
 base_url : localhost:8080
 
 Actors
-- Return all actors
+-- Return all actors
 - [GET]     base_url/actors
 - Return an actor
 - [GET]     base_url/actors/{id}
@@ -44,7 +44,7 @@ Actors
 Movies
 - Return all movies
 - [GET]     base_url/movies
-- Return a movie
+Return a movie
 - [GET]     base_url/movies/{id}
 - Return all movies sorted by best rating
 - [GET]     base_url/movies/rate
@@ -52,7 +52,6 @@ Movies
 - [GET]     base_url/movies/search?search=example
 - Add a movie
 - [POST]    base_url/movies
-- [BODY]
 ```json
 {
     "name": "A Origem 3",
@@ -69,7 +68,6 @@ Movies
 ```
 - Update a movie
 - [PUT]     base_url/movies/{id}
-- [BODY]
 ```json
 {
     "name": "A Origem 2",
@@ -92,7 +90,6 @@ Users
 - [GET]     base_url/users/{id}
 - Add a user
 - [POST]    base_url/users
-- [BODY]
 ```json
 {
 	"name": "Romulo",
@@ -103,7 +100,6 @@ Users
 ```
 - Update a user
 - [PUT]     base_url/users/{id}
-- [BODY]
 ```json
 {
 	"name": "Romulo 2",
@@ -117,7 +113,6 @@ Users
 Evaluation
 - Add an evaluation
 - [POST]    base_url/evaluations
-- [BODY]
 ```json
 {
 	"movie": {
@@ -150,13 +145,13 @@ Evaluation
 **Obs.:** 
 
 **because of time, it was not possible to implement some features or were commented:**
-**Java 8 or higher: OK**
-**Rest Pattern: OK**
-**MySQL: OK**
-**JWT: No**
-**Swagger: No**
-**Spring Data JPA & Hibernate: OK**
-**Flyway: No - You won't be able to run migrations but when running the API, JPA will create the database structure and populate it with information for testing**
+- **Java 8 or higher: OK**
+- **Rest Pattern: OK**
+- **MySQL: OK**
+- **JWT: No**
+- **Swagger: No**
+- **Spring Data JPA & Hibernate: OK**
+- **Flyway: No - You won't be able to run migrations but when running the API, JPA will create the database structure and populate it with information for testing**
 
 **Obs.:** 
-**You need to define in the application.properties file the url, username and password of your MySQL database**
+- **You need to define in the application.properties file the url, username and password of your MySQL database**
