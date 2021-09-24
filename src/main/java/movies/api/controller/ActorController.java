@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
 import movies.api.domain.model.Actor;
 import movies.api.service.actor.ActorCreateService;
 import movies.api.service.actor.ActorGetService;

@@ -30,7 +30,7 @@ An API was created that the [IMDb](https://www.imdb.com/) site that consults its
 base_url : localhost:8080
 
 Actors
--- Return all actors
+- Return all actors
 - [GET]     base_url/actors
 - Return an actor
 - [GET]     base_url/actors/{id}
@@ -144,7 +144,7 @@ Evaluation
 
 **Obs.:** 
 
-**because of time, it was not possible to implement some features or were commented:**
+**Because of time, it was not possible to implement some features or were commented:**
 - **Java 8 or higher: OK**
 - **Rest Pattern: OK**
 - **MySQL: OK**
